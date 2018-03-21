@@ -1,0 +1,467 @@
+html {
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#shell {
+    display: flex;
+    margin: 0 auto;
+    width: 440px;
+    min-height: 100vh;
+}
+
+#map-canvas,
+#map_canvas {
+    height: 100%;
+    display: none;
+}
+
+@media print {
+    html,
+    body {
+        height: auto;
+    }
+
+    #map-canvas,
+    #map_canvas {
+        height: 650px;
+    }
+}
+
+#content {
+    /* display: flex; */
+    width: 440px;
+    background-color: #FAFAFA;
+    box-shadow: 0px 0px 10px #888888;
+}
+
+.donate {
+    text-align: center;
+    width: auto;
+    margin-top: 60px;
+} 
+
+
+
+#menuBackground {
+    position: absolute;
+    background-color: rgba(0,0,0,0.3);
+    width: 440px;
+    height: 100vw;
+    display: none;
+}
+
+#menuPopout {
+    position: absolute;
+    width: 350px;
+    height: 100vh;
+    background-color: #FFF;
+    z-index: 1;
+    box-shadow: 3px 0px 10px #888888;
+    display: none;
+}
+
+#panel {
+    top: 73px;
+    left: 0px;
+    z-index: 5;
+    margin: 15px;
+}
+
+#appBar {
+    height: 56px;
+    width: 440px;
+    background-color: #3F51B5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.14);
+}
+
+#errorMessage {
+    display: none;
+    background-color: #E8E8E8;
+    border-bottom: 2px solid #DFDFDF;
+    height: auto;
+    width: auto;
+    color: red;
+    padding: 15px;
+    font-family: "Roboto";
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 440px) {
+    body {
+        background-color: #FAFAFA;
+    }
+
+    #content {
+        width: 100vw;
+        box-shadow: none;
+    }
+
+    #appBar {
+        width: 100vw;
+    }
+}
+
+#menuButton {
+    position: absolute;
+    background-image: url("icons/ic_menu_white_24px.svg");
+    height: 24px;
+    width: 24px;
+    margin: 16px;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    margin: 0 72px;
+    padding-top: 17px;
+    font-size: 20px;
+    color: white;
+}
+/* form starting stylings ------------------------------- */
+.inputGroup {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+input.inputText {
+    font-size: 16px;
+    padding: 8px 10px 5px 5px;
+    display: block;
+    width: 95%;
+    border: none;
+    border-bottom: 1px solid #8A8A8A;
+    background-color: transparent;
+    text-overflow: ellipsis;
+}
+
+    input.inputText:focus {
+        outline: none;
+    }
+
+input:invalid {
+    box-shadow: none;
+}
+
+.currentLocatonButton {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    display: inline-block;
+    padding: 13px;
+    height: 24px;
+    cursor: pointer;
+    width: 415px;
+}
+
+@media only screen and (max-width: 440px) {
+    .currentLocatonButton {
+        width: 100vw;
+    }
+}
+
+    .currentLocatonButton:hover {
+        background-color: rgba(0, 0, 0, .06);
+    }
+
+    .currentLocatonButton div:first-child {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .currentLocatonButton div:last-child {
+        display: inline-block;
+        padding-left: 7px;
+    }
+
+    /* LABEL ======================================= */
+    label {
+        color: #999;
+        font-size: 16px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .inputUnit {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        color: #999;
+        font-size: 16px;
+        right: 15px;
+        top: 10px;
+    }
+
+    .errorText {
+        font-family: 'Roboto', sans-serif;
+        color: #D50000;
+        font-size: 12px;
+        font-weight: normal;
+        margin: 4px 0 10px 6px;
+        height: 14px;
+    }
+
+    /* active state */
+    input:focus ~ label, input:valid ~ label {
+        top: -8px;
+        font-size: 12px;
+        color: #5264AE;
+    }
+
+    /* BOTTOM BARS ================================= */
+    .inputBar {
+        position: relative;
+        display: block;
+        width: 408px;
+    }
+
+        .inputBar:before, .inputBar:after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: #5264AE;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .inputBar:before {
+            left: 50%;
+        }
+
+        .inputBar:after {
+            right: 50%;
+        }
+
+    /* active state */
+    input:focus ~ .inputBar:before, input:focus ~ .inputBar:after {
+        width: 50%;
+    }
+
+    /* HIGHLIGHTER ================================== */
+    .inputHighlight {
+        position: absolute;
+        height: 60%;
+        width: 100px;
+        top: 25%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* active state */
+    input:focus ~ .highlight {
+        -webkit-animation: inputHighlighter 0.3s ease;
+        -moz-animation: inputHighlighter 0.3s ease;
+        animation: inputHighlighter 0.3s ease;
+    }
+
+    /* ANIMATIONS ================ */
+    @-webkit-keyframes inputHighlighter {
+        from {
+            background: #5264AE;
+        }
+
+        to {
+            width: 0;
+            background: transparent;
+        }
+    }
+
+    @-moz-keyframes inputHighlighter {
+        from {
+            background: #5264AE;
+        }
+
+        to {
+            width: 0;
+            background: transparent;
+        }
+    }
+
+    @keyframes inputHighlighter {
+        from {
+            background: #5264AE;
+        }
+
+        to {
+            width: 0;
+            background: transparent;
+        }
+    }
+
+    #locationSearchOverlay {
+        display: none;
+        position: absolute;
+        background-color: #FAFAFA;
+        width: 440px;
+        height: 100vh;
+        top: 61px;
+        z-index: 1;
+    }
+
+        #locationSearchOverlay .inputText {
+            width: 425px;
+        }
+
+    .pac-container {
+        background-color: #FAFAFA;
+        box-shadow: none;
+    }
+
+    .pac-item {
+        font-family: 'Roboto', sans-serif;
+        height: 50px;
+        cursor: pointer;
+    }
+
+        .pac-item:hover:hover {
+            background-color: rgba(0, 0, 0, .06);
+        }
+
+    pac-item span {
+        display: inline-block;
+    }
+
+    .pac-item > span:last-child {
+        display: block;
+        padding-top: 0;
+        margin-top: -10px;
+    }
+
+    .submitButton {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        color: #3F51B5;
+        width: 200px;
+        padding: 10px;
+        right: 10px;
+        text-align: center;
+        cursor: pointer;
+        float: right;
+    }
+
+        .submitButton:hover {
+            background-color: #d9ddf2;
+        }
+
+    /*loader icon*/
+
+    #loading {
+        padding-top: 100px;
+        display: none;
+        position: relative;
+        margin: 0 auto;
+        width: 50px;
+    }
+
+        #loading:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+
+    .circular {
+        -webkit-animation: rotate 2s linear infinite;
+        animation: rotate 2s linear infinite;
+        height: 100%;
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .path {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        stroke-linecap: round;
+        stroke: #3F51B5;
+    }
+
+
+    @keyframes rotate {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+
+
+    @keyframes color {
+        100%, 0% {
+            stroke: #d62d20;
+        }
+
+        40% {
+            stroke: #0057e7;
+        }
+
+        66% {
+            stroke: #008744;
+        }
+
+        80%, 90% {
+            stroke: #ffa700;
+        }
+    }
+
+    /*Links*/
+    .routeLink > a {
+        display: block;
+        border: 1px solid #C1C9FB;
+        background-color: #E6E8F2;
+        padding: 16px;
+        border-radius: 8px;
+        font-family: "roboto";
+        color: #333;
+        text-decoration: none;
+        box-shadow: 0px 0px 14px #ddd;
+    }
+
+    .overallLink > a {
+        margin-top: 80px;
+    }
+
+    .linkDivider {
+        height: 14px;
+        border-bottom: 1px solid #D3D3D3;
+        margin-bottom: 28px;
+    }
+
+    .waypointLinks > a {
+        margin-top: 20px;
+    }
