@@ -2,6 +2,7 @@ html {
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -32,28 +33,54 @@ body {
     }
 }
 
+#shadow {
+    position: fixed;
+    height: 100vh;
+    width: 440px;
+    box-shadow: 0px 0px 10px #888888;
+}
+
 #content {
     /* display: flex; */
     width: 440px;
     background-color: #FAFAFA;
-    box-shadow: 0px 0px 10px #888888;
+    z-index: 100;
 }
 
 .donate {
     text-align: center;
     width: auto;
     margin-top: 60px;
-} 
-
-
-
-#menuBackground {
-    position: absolute;
-    background-color: rgba(0,0,0,0.3);
-    width: 440px;
-    height: 100vw;
-    display: none;
 }
+
+#onbordingOverlay {
+    display: none;
+    position: absolute;
+    background-color: #FAFAFA;
+    width: 440px;
+    top: 61px;
+    z-index: 1;
+}
+
+    #onbordingOverlay p, #onbordingOverlay h1, #onbordingOverlay h2, #onbordingOverlay img {
+        padding: 0px 20px;
+    }
+
+    #onbordingOverlay img {
+        max-width: 90%;
+    }
+
+    #onbordingOverlay .submitButton {
+        margin: 20px
+    }
+    
+    #menuBackground {
+        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        width: 440px;
+        height: 100vw;
+        display: none;
+    }
 
 #menuPopout {
     position: absolute;
@@ -92,8 +119,16 @@ body {
 }
 
 @media only screen and (max-width: 440px) {
+    #shell {
+        width: 100vw;
+    }
+
     body {
         background-color: #FAFAFA;
+    }
+
+    #shadow {
+        display: none;
     }
 
     #content {
@@ -102,6 +137,9 @@ body {
     }
 
     #appBar {
+        width: 100vw;
+    }
+    #onbordingOverlay {
         width: 100vw;
     }
 }
@@ -310,9 +348,9 @@ input:invalid {
         z-index: 1;
     }
 
-        #locationSearchOverlay .inputText {
-            width: 425px;
-        }
+    #locationSearchOverlay .inputText {
+        width: 425px;
+    }
 
     .pac-container {
         background-color: #FAFAFA;
@@ -349,6 +387,7 @@ input:invalid {
         text-align: center;
         cursor: pointer;
         float: right;
+        text-transform: uppercase;
     }
 
         .submitButton:hover {

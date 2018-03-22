@@ -34,7 +34,8 @@ var timeoutID;
 function initialize() {
     if (localStorage.getItem("linksHTMLString") === null) {
         localStorage.linksHTMLString = "";
-    }
+        document.getElementById("onbordingOverlay").style.display = "block";
+    };
     document.getElementById("distance").value = "";
     document.getElementById("locationSearch").value = "";
     input = document.getElementById('searchTextField');
@@ -382,6 +383,9 @@ function findRoute() {
     }
 }
 
+function closePanel() {
+    document.getElementById("onbordingOverlay").style.display = "none";
+}
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
