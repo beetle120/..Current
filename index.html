@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="Chaos.css" rel="stylesheet">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Chaos Run</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDus_twZw9PPjLch0f6yyQ8POj2iKdLEu4&libraries=places" type="text/javascript"></script>
+    <script src="Chaos.js"></script>
+</head>
+
+<body>
+    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+         Chaos Run Top Banner -->
+    <!--<ins class="adsbygoogle"
+            style="display:inline-block;width:320px;height:100px"
+            data-ad-client="ca-pub-0932296871412429"
+            data-ad-slot="3537931015"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> -->
+    <div id="shell">
+        <div id="content">
+            <div id="menuPopout">
+                <div id="menuItems">
+                    <div class="menuItem" onclick="openItem('use')">How to use</div>
+                    <div class="menuItem" onclick="openItem('faq')">FAQ</div>
+                    <div class="menuItem" onclick="openItem('email')">Report an issue/suggestion</div>
+                </div>
+            </div>
+            <div id="menuBackground"></div>
+            <!--Search overlay-->
+            <div id="locationSearchOverlay">
+                <input class="inputText" type="text" name="location" id="searchTextField" placeholder="Type location here" onblur="searchLocationEnd()" autocomplete="on" required>
+                <div class="currentLocatonButton" onclick="fromCurrentAddress()">
+                    <div>
+                        <svg fill="#333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        Current Location
+                    </div>
+                </div>
+            </div>
+            <!--Onboarding Overlay-->
+            <div id="onbordingOverlay">
+                <h1>Welcome to Chaos Run</h1>
+                <p>Are you tired of the same old running route every time you run? Want a new route every time? Chaos Run has the answer, a new random route of whatever distance you like, that starts and ends from your location, that is different every time you run. Using the power of Google Maps, no two routes are ever the same.</p>
+                <h2>How to Use</h2>
+                <p>Enter a distance in kilometres of how far you want to run. This will be the complete distance within 10%, that starts and ends at your selected location.</p>
+                <img src="images/step1.png" />
+                <p>Start typing in the location that you want to start and end, and then select from the list of locations. Points of interest will be converted to addresses. Alternately, you can select Current Location if your device has GPS.</p>
+                <img src="images/step2.png" />
+                <p>Select <strong>FIND RANDOM ROUTE</strong> to generate your random route. It will create a set of locations (waypoints). This may take some time, so be patient.</p>
+                <img src="images/step3.png" />
+                <p>A list of links will appear, select <strong>Your Random Running Route</strong> to open Google Maps with the complete route. Just click start to navigate to your first location.</p>
+                <img src="images/step4.png" />
+                <p>If your version of Google Maps has issues with or does not support multiple waypoints, then select each Waypoint individually from these links. It will go from your current location to each waypoint. Return to the app to go to the next waypoint.</p>
+                <img src="images/step5.png" />
+                <p>If your unhappy with the current route just click <strong>FIND RANDOM ROUTE</strong> again to generate a new route. No two routes are the same.</p>
+                <p><strong>Enjoy!</strong></p>
+            </div>
+            <!--Main Content-->
+            <div id="appBar">
+                <div id="menuButton"></div>
+                <div class="title">Chaos Run</div>
+            </div>
+            <div id="errorMessage"></div>
+            <div id="panel">
+                <div class="inputGroup">
+                    <input class="inputText" type="text" name="distance" id="distance" required>
+                    <span class="inputHighlight"></span>
+                    <span class="inputBar" id="distanceBar"></span>
+                    <label class="inputName">Distance</label>
+                    <div class="inputUnit">km</div>
+                    <div class="errorText"></div>
+                </div>
+                <div class="inputGroup">
+                    <input class="inputText" type="text" name="location" id="locationSearch" placeholder="" onfocus="searchLocation()" required>
+                    <span class="inputHighlight"></span>
+                    <span class="inputBar"></span>
+                    <label class="inputName">Location</label>
+                    <div class="errorText"></div>
+                </div>
+
+                <div onClick="findRoute()" class="submitButton">FIND RANDOM ROUTE</div>
+                <!--<input type="button" onClick="calcRouteCurrent()" name="calcRoute" value="Current"><br>-->
+                <div class="output" id="output"></div>
+                <!--<div class="htmloutput" id="htmloutput"></div>-->
+            </div>
+            <div class="loadingCircle" id="loading">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                </svg>
+            </div>
+            <div class="donate">
+                <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+                <script type='text/javascript'>kofiwidget2.init('Buy Me a Coffee', '#3f51b5', 'F2F39JM3'); kofiwidget2.draw();</script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
