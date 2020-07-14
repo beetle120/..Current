@@ -240,7 +240,7 @@ function randomise(startingLat, startingLng) {
                 for (var i = 0; i < (numberWaypnts + 2); i++) {
                     localStorage.linksHTMLString += "/" + route.legs[i].end_location;
                 }
-                localStorage.linksHTMLString += "/data=!4m2!4m1!3e2' target='_blank'>Your random running route</a></p>";
+                localStorage.linksHTMLString += "/data=!4m2!4m1!3e2' target='_blank'>Open full route in Google Maps</a></p>";
 
                 localStorage.linksHTMLString += "<div class='linkDivider'></div>"
 
@@ -250,7 +250,7 @@ function randomise(startingLat, startingLng) {
                     var tempLocationSting = "" + route.legs[i].end_location;
                     tempLocationSting = tempLocationSting.replace('(', '');
                     tempLocationSting = tempLocationSting.replace(')', '');
-                    localStorage.linksHTMLString += "<p class='waypointLinks routeLink' id='cross" + i + "'><a id='myLink' href='#' onclick='crossAndGo(" + i + ", " + tempLocationSting + ");'> Waypoint " + (i + 1) + "</a></p>";
+                    localStorage.linksHTMLString += "<p class='waypointLinks routeLink' id='cross" + i + "'><a id='myLink' href='#' onclick='crossAndGo(" + i + ", " + tempLocationSting + ");'> Section " + (i + 1) + ": Open in Google Maps</a></p>";
                 }
                 htmlOutput = localStorage.linksHTMLString;
 
