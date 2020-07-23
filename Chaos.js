@@ -255,10 +255,15 @@ function randomise(startingLat, startingLng) {
 
                 // As coordinates for 3rd party apps
                 localStorage.linksHTMLString += "<div class='linkDivider'></div>";
-                localStorage.linksHTMLString += "<div class='OtherAppHeading'>Coordinates for other navigation apps</div>";
+                localStorage.linksHTMLString += "<div class='otherAppHeading' onclick='expandAppCoord()'>Coordinates for other navigation apps</div>";
+                localStorage.linksHTMLString += "<div id='otherCoordBlock'>";
                 for (var i = 0; i < (numberWaypnts + 2); i++) {
-                    localStorage.linksHTMLString += "<div class='OtherAppCoord'>" + route.legs[i].end_location + "</div>";
+                    var tempLocationSting = "" + route.legs[i].end_location;
+                    tempLocationSting = tempLocationSting.replace('(', '');
+                    tempLocationSting = tempLocationSting.replace(')', '');
+                    localStorage.linksHTMLString += "<div class='OtherAppCoord'>Waypoint " + (i+1) + ": " + tempLocationSting + "</div><button onclick='copyCoords("+tempLocationSting+")'>Copy waypoint" + (i+1) + "</button>";
                 }
+                localStorage.linksHTMLString += "</div>";
 
                 htmlOutput = localStorage.linksHTMLString;
 
@@ -393,6 +398,25 @@ function findRoute() {
 
 function closePanel() {
     document.getElementById("onbordingOverlay").style.display = "none";
+}
+
+function copyCoords(routeLegX, routeLegY) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = routeLegX + ", " + routeLegY;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+
+function expandAppCoord() {
+    var content = document.getElementById("otherCoordBlock");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+
 }
 
 

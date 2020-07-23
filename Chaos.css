@@ -504,3 +504,8 @@ input:invalid {
     .waypointLinks > a {
         margin-top: 20px;
     }
+
+    /*Other Apps*/
+    #otherCoordBlock {
+        display: none;
+    }
