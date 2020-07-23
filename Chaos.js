@@ -252,6 +252,14 @@ function randomise(startingLat, startingLng) {
                     tempLocationSting = tempLocationSting.replace(')', '');
                     localStorage.linksHTMLString += "<p class='waypointLinks routeLink' id='cross" + i + "'><a id='myLink' href='#' onclick='crossAndGo(" + i + ", " + tempLocationSting + ");'> Section " + (i + 1) + ": Open in Google Maps</a></p>";
                 }
+
+                // As coordinates for 3rd party apps
+                localStorage.linksHTMLString += "<div class='linkDivider'></div>";
+                localStorage.linksHTMLString += "<div class='OtherAppHeading'>Coordinates for other navigation apps</div>";
+                for (var i = 0; i < (numberWaypnts + 2); i++) {
+                    localStorage.linksHTMLString += "<div class='OtherAppCoord'>" + route.legs[i].end_location + "</div>";
+                }
+
                 htmlOutput = localStorage.linksHTMLString;
 
             }
