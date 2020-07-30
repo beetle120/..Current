@@ -255,13 +255,21 @@ function randomise(startingLat, startingLng) {
 
                 // As coordinates for 3rd party apps
                 localStorage.linksHTMLString += "<div class='linkDivider'></div>";
-                localStorage.linksHTMLString += "<div class='otherAppHeading' onclick='expandAppCoord()'>Coordinates for other navigation apps</div>";
+
+                localStorage.linksHTMLString += "<div class='expandBlock' onclick='expandAppCoord()'>";
+                    localStorage.linksHTMLString += "<div class='otherAppHeading'>Coordinates for other navigation apps</div>";
+                    localStorage.linksHTMLString += "<div class='otherAppSubHeading'>Tap to expand</div>";
+                localStorage.linksHTMLString += "</div>";  
                 localStorage.linksHTMLString += "<div id='otherCoordBlock'>";
                 for (var i = 0; i < (numberWaypnts + 2); i++) {
                     var tempLocationSting = "" + route.legs[i].end_location;
                     tempLocationSting = tempLocationSting.replace('(', '');
                     tempLocationSting = tempLocationSting.replace(')', '');
-                    localStorage.linksHTMLString += "<div class='OtherAppCoord'>Waypoint " + (i+1) + ": " + tempLocationSting + "</div><button onclick='copyCoords("+tempLocationSting+")'>Copy waypoint" + (i+1) + "</button>";
+                    if (i < numberWaypnts + 1) {
+                        localStorage.linksHTMLString += "<div class='OtherAppCoord' onclick='copyCoords("+tempLocationSting+")'>Waypoint " + (i+1) + ": Tap to copy coordinates to the clipboard</div>";
+                    } else {
+                        localStorage.linksHTMLString += "<div class='OtherAppCoord' onclick='copyCoords("+tempLocationSting+")'>Start/Finish: Tap to copy coordinates to the clipboard</div>";
+                    }
                 }
                 localStorage.linksHTMLString += "</div>";
 

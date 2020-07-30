@@ -479,6 +479,31 @@ input:invalid {
     }
 
     /*Links*/
+    .expandBlock {
+        border: 1px solid #8A8A8A;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+
+    .otherAppHeading {
+        font-size: 20px;
+    }
+
+    .otherAppSubHeading {
+        color: #777;
+        font-size: 15px;
+    }   
+
+    .OtherAppCoord {
+        margin-top: 20px;
+        border: 1px solid #8A8A8A;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
     .routeLink > a {
         display: block;
         border: 1px solid #C1C9FB;
