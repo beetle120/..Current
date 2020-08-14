@@ -247,10 +247,9 @@ function randomise(startingLat, startingLng) {
                 // As different links
                 for (var i = 0; i < (numberWaypnts + 2); i++) {
                     localStorage.linkCrossed = -1;
-                    var tempLocationSting = "" + route.legs[i].end_location;
-                    tempLocationSting = tempLocationSting.replace('(', '');
-                    tempLocationSting = tempLocationSting.replace(')', '');
-                    localStorage.linksHTMLString += "<p class='waypointLinks routeLink' id='cross" + i + "'><a id='myLink' href='#' onclick='crossAndGo(" + i + ", " + tempLocationSting + ");'> Section " + (i + 1) + ": Open in Google Maps</a></p>";
+                    var tempStartLocationSting = route.legs[i].start_location.lat().toFixed(6) + ", " + route.legs[i].start_location.lng().toFixed(6);
+                    var tempLocationSting = route.legs[i].end_location.lat().toFixed(6) + ", " + route.legs[i].end_location.lng().toFixed(6);
+                    localStorage.linksHTMLString += "<p class='waypointLinks routeLink' id='cross" + i + "'><a id='myLink' href='#' onclick='crossAndGo(" + i + ", "+ tempStartLocationSting + ", "+ tempLocationSting + ");'> Section " + (i + 1) + ": Open in Google Maps</a></p>";
                 }
 
                 // As coordinates for 3rd party apps
@@ -262,9 +261,7 @@ function randomise(startingLat, startingLng) {
                 localStorage.linksHTMLString += "</div>";  
                 localStorage.linksHTMLString += "<div id='otherCoordBlock'>";
                 for (var i = 0; i < (numberWaypnts + 2); i++) {
-                    var tempLocationSting = "" + route.legs[i].end_location;
-                    tempLocationSting = tempLocationSting.replace('(', '');
-                    tempLocationSting = tempLocationSting.replace(')', '');
+                    var tempLocationSting = route.legs[i].end_location.lat().toFixed(6) + ", " + route.legs[i].end_location.lng().toFixed(6);
                     if (i < numberWaypnts + 1) {
                         localStorage.linksHTMLString += "<div class='OtherAppCoord' onclick='copyCoords("+tempLocationSting+")'>Waypoint " + (i+1) + ": Tap to copy coordinates to the clipboard</div>";
                     } else {
@@ -349,10 +346,10 @@ function hasNoFerries() {
     }
 }
 
-function crossAndGo(linkNumber, endLocationLat, endLocationLon) {
+function crossAndGo(linkNumber, startLocationLat, startLocationLon, endLocationLat, endLocationLon) {
     localStorage.linkCrossed = linkNumber;
     document.getElementById("cross" + linkNumber).style.textDecoration = "line-through";
-    window.open("https://www.google.com.au/maps/dir/Current+Location/" + endLocationLat + "," + endLocationLon + "/data=!4m2!4m1!3e2", '_blank');
+    window.open("https://www.google.com.au/maps/dir/" + startLocationLat + "," + startLocationLon + "/" + endLocationLat + "," + endLocationLon + "/data=!4m2!4m1!3e2", '_blank');
 }
 
 function fillInAddress() {
